@@ -9,7 +9,7 @@ function Header() {
     navRef.current.classList.toggle("translate-y-0");
   };
   return (
-    <header className="flex items-center justify-between h-[80px] px-[2rem] bg-[#F15A59] text-white">
+    <header className="flex items-center justify-between h-[80px] px-[2rem] bg-[#F15A59] text-white border-b-2">
       <span className="text-[30px] font-bold">Logo</span>
       <nav
         ref={navRef}
