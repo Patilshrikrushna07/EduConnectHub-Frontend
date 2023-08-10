@@ -4,6 +4,7 @@ import { FiBookOpen } from "react-icons/fi";
 import { BsFillChatLeftDotsFill } from "react-icons/bs";
 import { MdNetworkWifi } from "react-icons/md";
 import Home from "@/pages";
+import Link from "next/link";
 
 const SideBar = () => {
   let sidebarValues = [
@@ -38,7 +39,7 @@ const SideBar = () => {
   ];
 
   return (
-      <div className="md:ml-20 ml-0 p-4 md:bg-gray-200 bg-[#F15A59] hidden md:block mt-20 scrollbar-none justify-between sticky top-0">
+      <div className="md:ml-20 ml-0 p-4 hidden md:block mt-20 scrollbar-none justify-between sticky top-0">
         <div className="rounded-full bg-orange-500 w-60 h-14 mt-2 items-center justify-center hidden md:flex">
           <span className="text-xl text-white font-medium">Add a Blog</span>
         </div>
@@ -64,6 +65,22 @@ const SideBar = () => {
             </div>
           );
         })}
+<div className="bg-gray-300 h-[1px]  mr-5 mt-2  blur-0 "></div>
+        <div className="mt-5 space-x-3 text-xs text-blue-400 cursor-pointer">
+          <Link className="hover:text-black" href={""}>About .</Link>
+          <Link className="hover:text-black" href={""}>Accessibility. </Link>
+          <Link className="hover:text-black" href={""}>Help Center. </Link>
+          <Link className="hover:text-black" href={""}>Privacy & Terms. </Link>
+          <Link className="hover:text-black" href={""}>Ad Choices. </Link>
+          <br/>
+          <Link className="hover:text-black" href={""}>App Lunching Soon</Link>
+          </div>
+          <span className="text-xs text-gray-600 font-bold">
+            Copyright@ 2023 - EduBlog
+          </span>
+          <p className="text-xs text-gray-600 mt-1 font-bold">
+            All Rights Reserved
+          </p>
     </div>
   );
 };

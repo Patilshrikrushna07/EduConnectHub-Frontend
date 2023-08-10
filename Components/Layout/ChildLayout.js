@@ -4,11 +4,13 @@ import SideBar from "./SideBar";
 import { BiHome, BiRepost } from "react-icons/bi";
 import { BsFillChatLeftDotsFill } from "react-icons/bs";
 import { MdNetworkWifi } from "react-icons/md";
+import Header from "../Header";
 
-const ChildLayout = ({ children }) => {
+const ChildLayout = ({ children,children1 }) => {
   return (
-    <ParentsLayout>
-      <main className="flex">
+    <>
+    <Header/>
+      <main className="flex bg-[#e8e9ee] ">
         <div className="md:flex-1">
         <SideBar />
         </div>
@@ -20,7 +22,7 @@ const ChildLayout = ({ children }) => {
           <BsFillChatLeftDotsFill className="flex-1 ml-2 text-3xl" />
         </div>
       </main>
-    </ParentsLayout>
+    </>
   );
 };
 
