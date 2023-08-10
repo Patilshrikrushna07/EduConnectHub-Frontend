@@ -25,12 +25,12 @@ export default function HomeSlider() {
 
     };
     return (
-        <div className='w-[850px]'>
+        <div className='md:w-[850px] w-[400px] md:p-0 p-5 md:mr-0 mr-3  md:ml-0 ml-2 '>
             <Slider {...settings} >
                 {sliderData.map((slider, i) => (
                     <div key={i} className="relative">
-                        <div className=" h-[200px] rounded-[20px] relative">
-                            <Image className=' h-[200px] rounded-[20px]' src={slider.name} alt="Slide 1" layout="fill" />
+                        <div className=" md:h-[200px] h-[100px] rounded-[20px] relative">
+                            <Image className=' h-[100px] md:h-[200px] rounded-[20px]' src={slider.name} alt="Slide 1" layout="fill" />
                         </div>
                         <a href={slider.path}>
                             <button className="absolute top-[250px] right-0 transform -translate-y-1/2 py-2 px-3 mr-[40px] font-bold text-4xl bg-white rounded-[10px]">

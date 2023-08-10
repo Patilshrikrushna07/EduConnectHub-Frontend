@@ -1,13 +1,24 @@
 import React from "react";
 import ParentsLayout from "./ParentsLayout";
 import SideBar from "./SideBar";
+import { BiHome, BiRepost } from "react-icons/bi";
+import { BsFillChatLeftDotsFill } from "react-icons/bs";
+import { MdNetworkWifi } from "react-icons/md";
 
 const ChildLayout = ({ children }) => {
   return (
     <ParentsLayout>
-      <main className="flex ">
+      <main className="flex">
+        <div className="md:flex-1">
         <SideBar />
-        <div className="w-screen mr-14 mt-8 ml-6">{children}</div>
+        </div>
+        <div className="w-screen md:mr-14 md:mt-24 mt-16 md:ml-6">{children}</div>
+        <div className="fixed bottom-0 left-0 w-full flex bg-white h-14 p-4 gap-18  items-center md:hidden">
+          <BiHome className="flex-1 ml-2 text-3xl" />
+          <BiRepost className="flex-1 ml-2 text-3xl" />
+          <MdNetworkWifi className="flex-1 ml-2 text-3xl" />
+          <BsFillChatLeftDotsFill className="flex-1 ml-2 text-3xl" />
+        </div>
       </main>
     </ParentsLayout>
   );
