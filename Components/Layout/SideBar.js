@@ -5,36 +5,47 @@ import { BsFillChatLeftDotsFill } from "react-icons/bs";
 import { MdNetworkWifi } from "react-icons/md";
 import Home from "@/pages";
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
 const SideBar = () => {
+  const router = useRouter();
+  const { query, asPath } = router;
+
   let sidebarValues = [
     {
       value: "Home",
       icon: <BiHome />,
+      link:"/",
     },
     {
       value: "Education",
       icon: <FiBookOpen />,
+      link:"/education",
     },
     {
-      value: "Qwetyt",
-      icon: <BiRepost />,
+      value: "Messages",
+      icon: <BsFillChatLeftDotsFill />,
+      link:"/messages",
     },
     {
       value: "Community",
-      icon: <BsFillChatLeftDotsFill />,
+      icon: <BiRepost />,
+      link:"/community",
     },
     {
       value: "Work",
       icon: <MdNetworkWifi />,
+      link:"/work",
     },
     {
       value: "BLog",
       icon: <FiBookOpen />,
+      link:"/blg",
     },
     {
       value: "Exy",
       icon: <MdNetworkWifi />,
+      link:"/exy",
     },
   ];
 
@@ -45,12 +56,13 @@ const SideBar = () => {
         </div>
         {sidebarValues.map((item, index) => {
           return (
-            <div key={index}>
+            <div key={index}  >
               <div className="text-centre md:pt-5 pt-0 flex items-center ">
-                <div
+                <Link
                   className={`hover:bg-white ${
-                    item.value == "Home" ? "bg-white" : "bg-none"
+                    item.link === asPath ? "bg-white" : "bg-none"
                   }  w-52 h-10 rounded-lg p-1 flex gap-2 items-center `}
+                  href={item?.link}
                 >
                   <div className="flex1 ml-2 text-xl">{item?.icon}</div>
                   <span
@@ -60,7 +72,7 @@ const SideBar = () => {
                   >
                     {item.value}
                   </span>
-                </div>
+                </Link>
               </div>
             </div>
           );

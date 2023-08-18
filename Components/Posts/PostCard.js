@@ -11,7 +11,7 @@ import { PiShareFatThin } from "react-icons/pi";
 
 const PostCard = () => {
   return (
-    <div className="bg-white w-auto md:rounded-lg h-auto mb-4">
+    <div className="bg-white w-auto md:rounded-lg h-auto mb-4 ">
       <div className="p-4 flex">
         <Image
           className="w-12 h-12 rounded-full"
@@ -86,7 +86,7 @@ const PostCard = () => {
         </div>
       </div>
 <div className="bg-gray-400 h-[1px] ml-5 mr-5 mt-2"></div>
-      <div className="w-auto  flex p-4 md:space-x-8  items-center">
+      <div className="w-auto  flex p-3 md:space-x-8  items-center">
         <div className="flex flex-1 items-center gap-1 hover:bg-gray-300 rounded-lg p-1" >
           <AiOutlineLike className="flex-1 ml-2 text-3xl md:text-xl" />
           <span className="hidden md:block">Like</span>

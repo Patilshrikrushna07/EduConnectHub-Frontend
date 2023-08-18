@@ -25,7 +25,7 @@ export default function HomeSlider() {
 
     };
     return (
-        <div className='md:w-[850px] w-[400px] md:p-0 p-5 md:mr-0 mr-3  md:ml-0 ml-2 '>
+        <div className='md:w-[850px] w-[350px] md:p-0 p-5 md:mr-0 mr-3  md:ml-0 ml-2 '>
             <Slider {...settings} >
                 {sliderData.map((slider, i) => (
                     <div key={i} className="relative">
