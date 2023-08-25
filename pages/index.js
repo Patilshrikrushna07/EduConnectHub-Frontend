@@ -7,7 +7,7 @@ import ChildLayout from "@/Components/Layout/ChildLayout";
 import HomeSlider from "@/Components/Slider/Slider";
 import PostCard from "@/Components/Posts/PostCard";
 import ProfileCard from "@/Components/Profile/ProfileCard";
-import Chat from "@/Components/Layout/chat";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +27,6 @@ export default function Home() {
       </div>
       <div className="md:mt-14 ml-16 mt-3 mb-14 w-[300px] justify-between sticky top-0 scrollbar-none">
       <ProfileCard/>
-      {/* <Chat/> */}
       </div>
         </div>
    </ChildLayout>

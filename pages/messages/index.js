@@ -2,6 +2,7 @@ import ChatList from "@/Components/Chat/ChatList";
 import ChatSelectMessage from "@/Components/Chat/ChatSelectMessage";
 import UserChatList from "@/Components/Chat/UserChatList";
 import ChildLayout from "@/Components/Layout/ChildLayout";
+import Chat from "@/Components/Layout/chat";
 import PostCard from "@/Components/Posts/PostCard";
 import ProfileCard from "@/Components/Profile/ProfileCard";
 import HomeSlider from "@/Components/Slider/Slider";

@@ -1,9 +1,19 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import OutgoingMsg from "./OutgoingMsg";
 import IncomingMsg from "./IncomingMsg";
+import SendMsg from "./SendMsg";
+
 
 const UserChatList = () => {
+    const chatContainerRef = useRef(null);
+
+    useEffect(() => {
+      if (chatContainerRef.current) {
+        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      }
+    }, []);
+  
   return (
     <div className="w-full ">
       <div className="p-1 h-14 flex w-full bg-opacity-50 backdrop-blur-lg inset-0 bg-gray-200 sticky top-0">
@@ -23,22 +33,23 @@ const UserChatList = () => {
           </p>
         </div>
       </div>
-      <div className="overflow-y-scroll max-h-[430px] bg-white  left-0 right-0 scrollbar-none">
-        <OutgoingMsg />
-        {/* <OutgoingMsg/> */}
-        <IncomingMsg />
-        <OutgoingMsg />
-        <IncomingMsg />
-        <OutgoingMsg />
-        <OutgoingMsg />
-        <IncomingMsg />
-        <IncomingMsg />
-        <OutgoingMsg />
-      </div>
-      <div className="w-full flex bg-white h-14 border-t border-black-400 p-1">
-     <div className="bg-gray-200 w-full rounded-xl ">
+      <div className="overflow-y-scroll max-h-[430px] bg-white left-0 right-0 scrollbar-none" ref={chatContainerRef}>
+      <OutgoingMsg />
+      {/* <OutgoingMsg/> */}
+      <IncomingMsg />
+      <OutgoingMsg />
+      <IncomingMsg />
+      <OutgoingMsg />
+      <OutgoingMsg />
+      <IncomingMsg />
+      <IncomingMsg />
+      <OutgoingMsg />
+      <IncomingMsg />
+      <OutgoingMsg />
 
-     </div>
+    </div>
+      <div className="w-full flex bg-white h-14 border-t border-black-400 p-1">
+    <SendMsg/>
       </div>
     </div>
   );
