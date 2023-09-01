@@ -7,6 +7,7 @@ import ChildLayout from "@/Components/Layout/ChildLayout";
 import HomeSlider from "@/Components/Slider/Slider";
 import PostCard from "@/Components/Posts/PostCard";
 import ProfileCard from "@/Components/Profile/ProfileCard";
+import Loader from "@/Components/Loader";
 
 
 const inter = Inter({ subsets: ["latin"] });

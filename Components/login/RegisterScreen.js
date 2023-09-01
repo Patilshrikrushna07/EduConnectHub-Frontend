@@ -8,11 +8,14 @@ import { BsSearch } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "../Loader";
+
 
 const RegisterScreen = ({ userType, userEmail }) => {
   const [email, setEmail] = useState(userEmail);
   const [showPassword, setShowPassword] = useState(false);
   const [showConformPassword, setShowConformPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -34,6 +37,7 @@ const RegisterScreen = ({ userType, userEmail }) => {
   const password = watch('password');
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
         const res = await postRequest({
           url: `auth/register`,
           body:{
@@ -45,12 +49,14 @@ const RegisterScreen = ({ userType, userEmail }) => {
           }
         });
         if (res) {
+      setIsLoading(false);
         console.log(res.data);
           document.cookie = `memberId=${res.data.memberId}; path=/; SameSite=Strict`;
           document.cookie = `authToken=${res.data.token}; path=/; SameSite=Strict`;
           window.location.href = "/";
         }
       } catch (error) {
+      setIsLoading(false);
         console.error(error);
       }
   };
@@ -64,6 +70,7 @@ const RegisterScreen = ({ userType, userEmail }) => {
     setShowConformPassword(!showConformPassword);
   };
   return (
+    <>
     <div className="rounded-lg bg-white md:w-[500px] md:h-auto w-full h-full">
       <Image
         className="md:w-28 md:h-28 md:p-2 w-24 ml-5"
@@ -283,6 +290,10 @@ const RegisterScreen = ({ userType, userEmail }) => {
         </div>
       </form>
     </div>
+    {isLoading &&
+    <Loader/>
+    }
+    </>
   );
 };
 

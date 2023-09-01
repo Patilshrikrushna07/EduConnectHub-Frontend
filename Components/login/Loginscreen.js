@@ -7,6 +7,7 @@ import { getRequest, postRequest } from "@/config/axiosInterceptor";
 import { BsSearch } from "react-icons/bs";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from "../Loader";
 // import { withRouter } from 'react-router-dom';
 
 const Loginscreen = ({ setUserTypes,setuserEmail }) => {
@@ -17,8 +18,10 @@ const Loginscreen = ({ setUserTypes,setuserEmail }) => {
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [userName, setUserName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const checkEmail = async () => {
     try {
+      setIsLoading(true);
       const res = await getRequest({
         url: `auth/checkPhoneNumber`,
         params: `?email=${email}`,
@@ -28,12 +31,15 @@ const Loginscreen = ({ setUserTypes,setuserEmail }) => {
         setUserType(res.data.data.type);
         setUserTypes(res.data.data.type);
         setUserName(res.data.data.userName);
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
     }
   };
   const loginNow = async () => {
+    setIsLoading(true);
     try {
       const res = await postRequest({
         url: `auth/login`,
@@ -43,6 +49,7 @@ const Loginscreen = ({ setUserTypes,setuserEmail }) => {
         },
       });
       if (res) {
+      setIsLoading(false);
         document.cookie = `memberId=${res.data.memberId}; path=/; SameSite=Strict`;
         document.cookie = `authToken=${res.data.token}; path=/; SameSite=Strict`;
         setIsValidPassword(true);
@@ -52,6 +59,7 @@ const Loginscreen = ({ setUserTypes,setuserEmail }) => {
       toast.warn("Password Not Match!");
       setIsValidPassword(false);
       console.error(error);
+      setIsLoading(false);
     }
   };
   const handleEmailChange = (event) => {
@@ -71,6 +79,7 @@ const Loginscreen = ({ setUserTypes,setuserEmail }) => {
     setShowPassword(!showPassword);
   };
   return (
+    <>
     <div className="rounded-lg bg-white md:w-[500px] md:h-auto w-full h-full">
       <Image
         className="md:w-28 md:h-28 md:p-2 w-24 ml-5"
@@ -157,6 +166,10 @@ const Loginscreen = ({ setUserTypes,setuserEmail }) => {
         )}
       </div>
     </div>
+    {isLoading &&
+    <Loader/>
+    }
+    </>
   );
 };
 
