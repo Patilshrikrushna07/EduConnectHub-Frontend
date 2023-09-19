@@ -76,7 +76,6 @@ export const patchRequest = ({ url, body, auth, params = "" }) => {
   });
 };
 
-
 export const deleteRequest = ({ url, body, auth, params = "" }) => {
   return axiosDefaultInstance.delete(`${url + params}`, body, {
     timeout: timeout,
