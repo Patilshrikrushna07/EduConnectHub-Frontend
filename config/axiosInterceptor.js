@@ -42,11 +42,10 @@ export const getRequest = ({
   params = "",
   Cookie,
 }) => {
-  //   // const token = userState.getState().token;
-
   return axiosDefaultInstance.get(`${url + params}`, {
     headers: {
       Cookie,
+      Authorization: auth ? `Basic ${btoa(`${USERNAME}:${PASS}`)}` : "",
     },
   });
 };
@@ -68,7 +67,6 @@ export const postRequest = ({
 };
 
 export const patchRequest = ({ url, body, auth, params = "" }) => {
-  //   // const token = userState.getState().token;
 
   return axiosDefaultInstance.patch(`${url + params}`, body, {
     timeout: timeout,
@@ -79,8 +77,6 @@ export const patchRequest = ({ url, body, auth, params = "" }) => {
 };
 
 export const deleteRequest = ({ url, body, auth, params = "" }) => {
-  //   // const token = userState.getState().token;
-
   return axiosDefaultInstance.delete(`${url + params}`, body, {
     timeout: timeout,
     headers: {
@@ -89,78 +85,3 @@ export const deleteRequest = ({ url, body, auth, params = "" }) => {
   });
 };
 
-export const elasticSearchRequest = ({ url, body }) => {
-  //   // const token = userState.getState().token;
-  return axiosDefaultInstance.post(`${ELASTIC_URL}${url}`, body, {
-    timeout: timeout,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": "true",
-      "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-      "Access-Control-Allow-Headers":
-        "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
-      "x-app-id": ELASTIC_APP_ID,
-      "x-app-key": ELASTIC_APP_KEY,
-    },
-  });
-};
-
-export const getRequestDGMR = ({ url, params = "" }) => {
-  //   // const token = userState.getState().token;
-  return axiosDefaultInstance.get(`${DGMR_BASE_URL}${url + params}`, {
-    timeout: timeout,
-    headers: {
-      Authorization: DGMR_TOKEN,
-    },
-  });
-};
-
-export const postRequestDGMR = ({ url, params = "", body }) => {
-  //   // const token = userState.getState().token;
-  return axiosDefaultInstance.post(`${DGMR_BASE_URL}${url + params}`, body, {
-    timeout: timeout,
-    headers: {
-      Authorization: DGMR_TOKEN,
-    },
-  });
-};
-
-export const getRequestCME = ({ url, auth, params = "" }) => {
-  //   // const token = userState.getState().token;
-  return axiosDefaultInstance.get(`${CME_BASE_URL}${url + params}`, {
-    timeout: timeout,
-    headers: {
-      Authorization: auth ? `Basic ${btoa(`${USERNAME}:${PASS}`)}` : "",
-    },
-  });
-};
-
-export const postRequestCME = ({ url, auth, params = "", body }) => {
-  //   // const token = userState.getState().token;
-  return axiosDefaultInstance.post(`${CME_BASE_URL}${url + params}`, body, {
-    timeout: timeout,
-    headers: {
-      Authorization: auth ? `Basic ${btoa(`${USERNAME}:${PASS}`)}` : "",
-    },
-  });
-};
-
-export const getRequestMEDI = ({ url, auth, params = "" }) => {
-  //   // const token = userState.getState().token;
-  return axiosDefaultInstance.get(`${MEDI_API}${url + params}`, {
-    timeout: timeout,
-    headers: {
-      Authorization: auth ? `Basic ${btoa(`${USERNAME}:${PASS}`)}` : "",
-    },
-  });
-};
-
-export const postRequestMEDI = ({ url, auth, params = "", body }) => {
-  //   // const token = userState.getState().token;
-  return axiosDefaultInstance.post(`${MEDI_API}${url + params}`, body, {
-    timeout: timeout,
-    headers: {
-      Authorization: auth ? `Basic ${btoa(`${USERNAME}:${PASS}`)}` : "",
-    },
-  });
-};

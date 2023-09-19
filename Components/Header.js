@@ -6,7 +6,8 @@ import { BsSearch } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 import Edubloglogo from "../public/edublogs-logo-vector.svg";
-import { getCookie, setCookie } from "cookies-next";
+import { getCookie, setCookie ,removeCookies} from "cookies-next";
+import { LogOutPath, ProfilePath } from "@/constants/pathConstants";
 
 function Header() {
   const navRef = useRef();
@@ -14,6 +15,7 @@ function Header() {
   const id = "/";
   const auth_token = getCookie("authToken");
   console.log(auth_token);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <header
@@ -42,7 +44,12 @@ function Header() {
         />
       </div>
       {auth_token ? (
-        <div className="flex md:mr-32 mr-4">
+        <div
+          className="flex md:mr-32 mr-4"
+          onClick={() => {
+            setShowMenu(!showMenu);
+          }}
+        >
           <MdNotifications className="text-3xl mr-5 text-black cursor-pointer" />
           <Image
             className="w-8 h-8 rounded-full flex justify-center border border-black cursor-pointer"
@@ -51,11 +58,33 @@ function Header() {
             width={0}
             height={0}
           />
+          {showMenu && (
+            <div className="before:top-0 before:bottom-0 before:left-0 before:right-0 cursor-default ">
+              <div className="grid gap-3 p-4 absolute top-16 md:top-16 right-0 w-28 bg-white shadow-md rounded-md md:mr-32 mr-1">
+                <a href={"/" + ProfilePath} className="block">
+                  <p className="text-base font-medium text-black">
+                    My Profile
+                  </p>
+                </a>
+                <hr />
+                <div
+                  className="block md:cursor-pointer"
+                  onClick={() => {
+                    window.location.href = `/${LogOutPath}`;
+                  }}
+                >
+                  <p className="text-base font-medium  text-black">
+                    Logout
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex md:mr-32 mr-4">
           <Link
-            className="w-20 h-8 rounded-sm flex justify-center bg-blue-400 cursor-pointer items-center"
+            className="w-20 h-8 rounded-lg text-white flex font-bold justify-center bg-blue-600 cursor-pointer items-center"
             href="/login"
           >
             Login

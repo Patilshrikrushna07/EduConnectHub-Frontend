@@ -1,18 +1,20 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { AiFillSetting } from "react-icons/ai";
 import { BiPlus } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { TbMessageCirclePlus } from "react-icons/tb";
-
-const ChatList = () => {
-  const [memberList, setMemberList] = useState([
-    1, 2, 4, 5, 4, 65, 5, 5, 5, 5, 5, 5, 5, 57, 57, 3, 3, 5, 5, 3, 3, 3, 5, 6,
-    4, 6, 4, 5, 4, 4, 3, 3,
-  ]);
+import defaultImage from "../../public/defaultImage.png"
+const ChatList = ({setUserChat,data}) => {
+  const router = useRouter();
+  console.log(data[0]);
+  const handleDivClick = (item) => {
+    setUserChat(item);
+  };
   return (
-    <div className="mb-14 md:w-[350px] bg-white  h-[500px] rounded-lg sticky top-0 border-r border-black-500">
-      <div className="flex items-center border-b border-black-500 p-3 sticky">
+    <div className="mb-14 md:w-[350px] bg-white  md:h-[500px] h-screen rounded-lg sticky top-0 border-r border-black-500">
+      <div className="flex items-center border-b border-black-500 p-3 sticky top-0">
         <div className="flex-1 text-2xl font-medium ">Start Messaging</div>
         <div className="flex gap-3">
           <div className="text-2xl cursor-pointer">
@@ -33,19 +35,20 @@ const ChatList = () => {
           autoComplete="off"
         />
       </div>
-      <div className="absolute bg-white  left-0 right-0  max-h-[420px] overflow-y-scroll scrollbar-none">
-        {memberList.map((index, items) => (
-          <div className="p-2 pt-4 flex hover:bg-gray-100 cursor-pointer" key={index} >
+      <div className="absolute bg-white  left-0 right-0  md:max-h-[420px] h-full overflow-scroll scrollbar-none">
+        {data.map((item, index) => (
+          <div className="p-2 pt-4 flex hover:bg-gray-100 cursor-pointer" key={index}  onClick={() => handleDivClick(item)}>
             <Image
-              className="w-12 h-12 rounded-full"
-              src="https://img.freepik.com/free-psd/horizontal-youtube-banner-home-furniture-online-shop_23-2149047881.jpg"
-              alt="Slide 1"
-              width={0}
-              height={0}
+              className=" rounded-full"
+              src={item.image_name ? item.image_name :defaultImage }
+              alt="Image"
+              width={50}
+              height={15}
             />
             <div className="flex-1 ml-3">
               <p className="text-black font-medium cursor-pointer ">
-                Shrikrushna Patil
+                {item.fname}{" "}
+                {item.lname}
               </p>
               <p className="text-xs text-gray-400 font-medium">
                 Founder & CEO of EduBlog
