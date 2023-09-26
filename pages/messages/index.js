@@ -25,7 +25,7 @@ const index = () => {
     try {
       setIsLoading(true);
       const res = await getRequest({
-        url: `get-all-user`,
+        url: `get-all-user`, 
         params: ``,
       });
       if (res) {
