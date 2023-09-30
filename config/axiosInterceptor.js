@@ -41,11 +41,13 @@ export const getRequest = ({
   auth,
   params = "",
   Cookie,
+  headers,
+  token
 }) => {
   return axiosDefaultInstance.get(`${url + params}`, {
     headers: {
       Cookie,
-      Authorization: auth ? `Basic ${btoa(`${USERNAME}:${PASS}`)}` : "",
+      Authorization: auth ? `Basic ${btoa(`${USERNAME}:${PASS}`)}` : token,
     },
   });
 };

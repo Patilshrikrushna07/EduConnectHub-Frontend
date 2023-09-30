@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { getRequest, getRequestDGMR } from "@/config/axiosInterceptor";
 import { isEmpty } from "lodash";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 
 export const userDetailsStore = create((set) => ({
   hasError: false,
@@ -25,10 +25,12 @@ export const userDetailsStore = create((set) => ({
   primePoints: 0,
   doctorEngagementDetails: {},
   getUserDetails: async (member_id) => {
+  const auth_token = getCookie("authToken");
     try {
       const response = await getRequest({
         url: `get-user-basic-details`,
         params: `/21?member_id=23`,
+        token:auth_token
       });
       const data = await response.data;
       console.log("dj",data.data.image_name);
