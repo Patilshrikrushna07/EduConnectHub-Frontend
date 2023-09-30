@@ -8,6 +8,8 @@ import Image from "next/image";
 import Edubloglogo from "../public/edublogs-logo-vector.svg";
 import { getCookie, setCookie ,removeCookies} from "cookies-next";
 import { LogOutPath, ProfilePath } from "@/constants/pathConstants";
+import { userDetailsStore } from "@/store/userDetailsStore";
+import defaultImage from "../public/defaultImage.png";
 
 function Header() {
   const navRef = useRef();
@@ -16,7 +18,14 @@ function Header() {
   const auth_token = getCookie("authToken");
   console.log(auth_token);
   const [showMenu, setShowMenu] = useState(false);
+  const getUserDetails = userDetailsStore((state) => state.getUserDetails);
+  const ProfileImage = userDetailsStore((state) => state.profileImage);
 
+
+  console.log("ProfileImage",ProfileImage);
+  useEffect(() => {
+   getUserDetails(); 
+  },[]);
   return (
     <header
       className={`flex items-center justify-between h-[70px] bg-white  md:text-white text-black w-full fixed z-50 border border-b-black-400 ${
@@ -45,18 +54,19 @@ function Header() {
       </div>
       {auth_token ? (
         <div
-          className="flex md:mr-32 mr-4"
-          onClick={() => {
-            setShowMenu(!showMenu);
-          }}
+          className="flex md:mr-32 mr-4 justify-center items-center"
+          
         >
           <MdNotifications className="text-3xl mr-5 text-black cursor-pointer" />
           <Image
-            className="w-8 h-8 rounded-full flex justify-center border border-black cursor-pointer"
-            src="https://img.freepik.com/free-psd/horizontal-youtube-banner-home-furniture-online-shop_23-2149047881.jpg"
+            className="rounded-full flex justify-center border border-black cursor-pointer"
+            src={ProfileImage ? ProfileImage:defaultImage}
             alt="Slide 1"
-            width={0}
-            height={0}
+            width={40}
+            onClick={() => {
+              setShowMenu(!showMenu);
+            }}
+            height={9}
           />
           {showMenu && (
             <div className="before:top-0 before:bottom-0 before:left-0 before:right-0 cursor-default ">
