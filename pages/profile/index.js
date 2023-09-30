@@ -5,17 +5,21 @@ import ProfileCard from "@/Components/Profile/ProfileCard";
 import ProfileDetails from "@/Components/Profile/ProfileDetails";
 import UserEngagement from "@/Components/Profile/UserEngagement";
 import { getRequest } from "@/config/axiosInterceptor";
+import { getCookie } from "cookies-next";
 import React, { useEffect, useState } from "react";
 
 const index = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userDetail,setUserDetail]=useState([]);
+  const auth_token = getCookie("authToken");
+
   const userDetails = async () => {
     try {
       setIsLoading(true);
       const res = await getRequest({
         url: `get-user-basic-details`,
         params: `/21?member_id=23`,
+        token:"Barear "+auth_token
       });
       if (res) {
         setIsLoading(false);

@@ -28,9 +28,8 @@ export const userDetailsStore = create((set) => ({
   const auth_token = getCookie("authToken");
     try {
       const response = await getRequest({
-        url: `get-user-basic-details`,
-        params: `/21?member_id=23`,
-        token:auth_token
+        url: `get-login-user-details`,
+        token:"Barear "+auth_token
       });
       const data = await response.data;
       console.log("dj",data.data.image_name);
