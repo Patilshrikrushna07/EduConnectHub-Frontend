@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import { BsEmojiSmile } from "react-icons/bs";
 import { io } from "socket.io-client";
 var socket;
 
 const SendMsg = ({setMessages,messages}) => {
+  socket = io("http://localhost:5000");
   const [message, setMessage] = useState([]);
   const sendMessage = async (e) => {
     e.preventDefault(); 
     socket = io("http://localhost:5000");
-    socket.emit('new message',message)
+    const timestamp = new Date();
+    socket.emit("new message", {
+      senderId: 19, // Sender's ID
+      recipientId: 21, // Recipient's ID
+      text: message,
+      timestamp:timestamp
+    });
     if (message.trim() !== "") {
       const timestamp = new Date();
       setMessages([...messages, { text: message, sender: "user" ,timestamp }]);
@@ -17,6 +24,17 @@ const SendMsg = ({setMessages,messages}) => {
     }
     console.log("Message", message); 
   };
+
+  
+useEffect(() => {
+  socket.on("received message", (messageData) => {
+    console.log("Received message:", messageData);
+  });
+  return () => {
+    socket.off("received message");
+  };
+}, []);
+
 
   return (
     <div className="w-full rounded-xl ">
