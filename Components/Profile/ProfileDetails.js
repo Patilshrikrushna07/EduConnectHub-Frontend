@@ -3,6 +3,9 @@ import Link from "next/link";
 import React from "react";
 import { BsBookmarkFill } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
+import defaultImage from "../../public/defaultImage.png";
+// import defaultCoverImage from "../../public/"
+
 import {
   CoverImage,
   ProfileSkelton,
@@ -28,7 +31,7 @@ const ProfileDetails = ({ userDetail, isLoading }) => {
               />
               <Image
                 className="w-auto h-auto rounded-full absolute bottom-[-33px] left-[20px] border-4 border-white"
-                src={userDetail?.image_name}
+                src={userDetail?.image_name ? userDetail?.image_name :defaultImage}
                 alt=" "
                 width={100}
                 height={28}

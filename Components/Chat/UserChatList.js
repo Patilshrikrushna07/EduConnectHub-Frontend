@@ -4,8 +4,10 @@ import OutgoingMsg from "./OutgoingMsg";
 import IncomingMsg from "./IncomingMsg";
 import SendMsg from "./SendMsg";
 import defaultImage from "../../public/defaultImage.png";
+import { userDetailsStore } from "@/store/userDetailsStore";
 
 const UserChatList = ({ data,setMessages,messages }) => {
+  const userDetails = userDetailsStore((state) => state.userDetails);
   const chatContainerRef = useRef(null);
   console.log("msg", messages);
   useEffect(() => {
@@ -41,14 +43,14 @@ const UserChatList = ({ data,setMessages,messages }) => {
         style={{ maxHeight: "calc(70vh - 1rem)", overflowY: "scroll" }}
       >
         {messages.map((message, index) =>
-          message.sender === "user" ? (
+          message.sender.id === userDetails.id ? (
             <OutgoingMsg key={index} message={message} />
           ) : (
             <IncomingMsg key={index} message={message} />
           )
         )}
       </div>
-      <div className="sticky bottom-2">
+      <div className="sticky bottom-2 ">
         <div className="w-full flex bg-white h-12 border-t border-black-400 p-1">
           <SendMsg
             messages={messages}

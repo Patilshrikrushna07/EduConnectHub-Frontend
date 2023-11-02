@@ -8,7 +8,6 @@ import { TbMessageCirclePlus } from "react-icons/tb";
 import defaultImage from "../../public/defaultImage.png"
 const ChatList = ({setUserChat,data}) => {
   const router = useRouter();
-  console.log(data[0]);
   const handleDivClick = (item) => {
     setUserChat(item);
   };

@@ -25,14 +25,14 @@ export const userDetailsStore = create((set) => ({
   primePoints: 0,
   doctorEngagementDetails: {},
   getUserDetails: async (member_id) => {
-  const auth_token = getCookie("authToken");
+    const auth_token = getCookie("authToken");
     try {
       const response = await getRequest({
         url: `get-login-user-details`,
-        token:"Barear "+auth_token
+        token: "Barear " + auth_token,
       });
       const data = await response.data;
-      console.log("dj",data.data.image_name);
+      console.log("dj", data.data.id);
       if (data.status) {
         if (isEmpty(data.data)) {
           return set(() => ({ isEmpty: true }));
@@ -58,6 +58,6 @@ export const userDetailsStore = create((set) => ({
     }
     // }
   },
-  
+
   clearUserDetails: () => set(() => ({ userDetails: [] })),
 }));
